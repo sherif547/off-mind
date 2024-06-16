@@ -50,6 +50,10 @@ def preprocess_and_extract_features(nifti_data, atlas_data):
 # FastAPI app setup
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the FastAPI NIfTI Prediction Service"}
+
 @app.post("/predict", response_class=PlainTextResponse)
 async def predict_region(file: UploadFile = File(...)):
     temp_file_path = None
